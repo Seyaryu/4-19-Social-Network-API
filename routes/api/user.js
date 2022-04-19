@@ -24,28 +24,4 @@ router.route('/:userId/friends/:friendId')
   .post(addFriend)
   .delete(deleteFriend);
 
-// Thoughts
-const {
-    getThoughts,
-    getThoughtById,
-    createThought,
-    addReaction,
-    deleteReaction,
-    updateThought,
-    deleteThought,
-} = require('../../controllers/thoughtController.js')
-
-router.route('/thoughts')
-    .get(getThoughts)
-    .post(createThought);
-
-router.route('/thoughts/:thoughtId')
-    .get(getThoughtById)
-    .put(updateThought)
-    .delete(deleteThought);
-
-router.route('/thoughts/:thoughtId/reactions/:reactionId')
-    .post(addReaction)
-    .delete(deleteReaction);
-
 module.exports = router;
