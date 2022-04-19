@@ -1,6 +1,37 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
 const moment = require('moment');
+
+// Schema to create Reaction model
+const reactionSchema = new Schema(
+  {
+    reactionId:
+    {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxlength: 280,
+    },
+    username: [
+      {
+        type: String,
+        required: true,
+      }
+    ],
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a'),
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
 
 // Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -16,9 +47,9 @@ const thoughtSchema = new Schema(
       default: Date.now,
     },
     username: {
-        type: String,
-        required: true,
-        ref: 'User'
+      type: String,
+      required: true,
+      ref: 'User'
     },
     reactions: [reactionSchema],
   },
@@ -31,39 +62,6 @@ const thoughtSchema = new Schema(
   }
 );
 
-// Schema to create Reaction model
-const reactionSchema = new Schema(
-  {
-    reactionId:
-        {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId(),
-        },
-    reactionBody: {
-      type: String,
-      required: true,
-      maxlength: 280,
-    },
-    username: [
-        userSchema,
-        {
-            type: String,
-            required: true,
-        }
-    ],
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a'),
-      },
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
-    id: false,
-  }
-);
 
 // Initialize our Thought model
 const Thought = model('thought', thoughtSchema);

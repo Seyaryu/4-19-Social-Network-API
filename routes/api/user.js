@@ -20,7 +20,7 @@ router.route('/:userId')
   .put(updateUser)
   .delete(deleteUser);
 
-router.route('/api/users/:userId/friends/:friendId')
+router.route('/:userId/friends/:friendId')
   .post(addFriend)
   .delete(deleteFriend);
 
@@ -44,7 +44,7 @@ router.route('/thoughts/:thoughtId')
     .put(updateThought)
     .delete(deleteThought);
 
-router.route('/thoughts/:thoughtId/reactions')
+router.route('/thoughts/:thoughtId/reactions/:reactionId')
     .post(addReaction)
     .delete(deleteReaction);
 
