@@ -35,16 +35,16 @@ const {
     deleteThought,
 } = require('../../controllers/thoughtController.js')
 
-router.route('/api/thoughts')
+router.route('/thoughts')
     .get(getThoughts)
     .post(createThought);
 
-router.route('/api/thoughts/:thoughtId')
+router.route('/thoughts/:thoughtId')
     .get(getThoughtById)
     .put(updateThought)
     .delete(deleteThought);
 
-router.route('/api/thoughts/:thoughtId/reactions')
+router.route('/thoughts/:thoughtId/reactions')
     .post(addReaction)
     .delete(deleteReaction);
 
