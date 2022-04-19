@@ -60,7 +60,7 @@ module.exports = {
         })
         .catch(err => res.json(err));
     },
-    removeReaction(req, res) {
+    deleteReaction(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $pull: { reactions: { reactionId: req.params.reactionId } } },
